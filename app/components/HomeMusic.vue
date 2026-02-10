@@ -1,41 +1,37 @@
 <script setup lang="ts">
-const songs = [
-  {
-    title: 'We Gotta Get Out Of This Place',
-    artist: 'The Animals',
-    album: 'Animal Tracks',
-    cover: 'https://images.unsplash.com/photo-1493225255756-d9584f8606e9?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80',
-    played: '224次'
+const limit = ref(7)
+const containerRef = ref<HTMLElement | null>(null)
+
+const {data: songs, status} = await useFetch('/api/music/playlist', {
+  query: {
+    limit: limit,
+    id: '17747589549'
   },
-  {
-    title: "Runnin' Down A Dream",
-    artist: 'Tom Petty',
-    album: 'Full Moon Fever',
-    cover: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80',
-    played: '189次'
-  },
-  {
-    title: 'The Girl Is Mine',
-    artist: 'Paul McCartney',
-    album: 'Thriller',
-    cover: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80',
-    played: '156次'
-  },
-  {
-    title: 'Let Her Dance',
-    artist: 'Bobby Fuller Four',
-    album: 'Fantastic Mr. Fox',
-    cover: 'https://images.unsplash.com/photo-1514525253440-b393452e8d26?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80',
-    played: '142次'
+  server: true,
+  lazy: true,
+  watch: [limit]
+})
+
+// Infinite scroll handler
+const handleScroll = () => {
+  console.log("🚀 ~  ~ handleScroll: ");
+  if (!containerRef.value) return
+
+  const {scrollTop, scrollHeight, clientHeight} = containerRef.value
+  // Load more when scrolled to bottom (with 50px threshold)
+  if (scrollTop + clientHeight >= scrollHeight - 50 && status.value !== 'pending') {
+    limit.value += 6
   }
-]
+}
+
 </script>
 
 <template>
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
-    <div class="flex items-center justify-between mb-6">
+  <div
+      class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 h-full flex flex-col">
+    <div class="flex items-center justify-between mb-6 flex-shrink-0">
       <h3 class="text-xl font-bold flex items-center gap-2">
-        <Icon name="fluent:headphones-sound-wave-24-filled" class="text-primary-500" />
+        <Icon name="fluent:headphones-sound-wave-24-filled" class="text-primary-500"/>
         最近在听
       </h3>
       <span class="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-gray-500">
@@ -43,28 +39,75 @@ const songs = [
       </span>
     </div>
 
-    <div class="space-y-4">
-      <div v-for="(song, index) in songs" :key="index" class="flex items-center gap-4 group">
-        <div class="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-          <img :src="song.cover" :alt="song.title" class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <Icon name="fluent:play-24-filled" class="text-white w-6 h-6" />
+    <div
+        ref="containerRef"
+        @scroll="handleScroll"
+        class="flex-1 overflow-y-auto custom-scrollbar pr-2 -mr-2 h-[350px]"
+    >
+      <div v-if="status === 'pending' && (!songs || songs.length === 0)" class="space-y-4">
+        <div v-for="i in 4" :key="i" class="flex items-center gap-4 animate-pulse">
+          <div class="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-lg"></div>
+          <div class="flex-grow space-y-2">
+            <div class="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
           </div>
         </div>
-        
-        <div class="flex-grow min-w-0">
-          <h4 class="font-medium text-gray-900 dark:text-gray-100 truncate group-hover:text-primary-600 transition-colors">
-            {{ song.title }}
-          </h4>
-          <p class="text-xs text-gray-500 dark:text-gray-400 truncate">
-            {{ song.artist }}
-          </p>
+      </div>
+
+      <div v-else-if="songs && songs.length > 0" class="space-y-4 pb-4">
+        <div v-for="(song, index) in songs" :key="index" class="flex items-center gap-4 group">
+          <div class="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+            <img :src="song.cover" :alt="song.title" class="w-full h-full object-cover"/>
+            <div
+                class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+              <Icon name="fluent:play-24-filled" class="text-white w-6 h-6"/>
+            </div>
+          </div>
+
+          <div class="flex-grow min-w-0">
+            <h4 class="font-medium text-gray-900 dark:text-gray-100 truncate group-hover:text-primary-600 transition-colors cursor-pointer"
+                :title="song.title">
+              {{ song.title }}
+            </h4>
+            <p class="text-xs text-gray-500 dark:text-gray-400 truncate" :title="song.artist">
+              {{ song.artist }}
+            </p>
+          </div>
+
+          <div class="text-xs text-gray-400 font-mono">
+            {{ song.played }}
+          </div>
         </div>
-        
-        <div class="text-xs text-gray-400 font-mono">
-          {{ song.played }}
+
+        <!-- Loading More Indicator -->
+        <div v-if="status === 'pending'" class="py-4 flex justify-center">
+          <Icon name="svg-spinners:3-dots-fade" class="w-6 h-6 text-gray-400"/>
         </div>
+      </div>
+
+      <div v-else class="text-center py-8 text-gray-500">
+        <Icon name="fluent:music-note-off-24-regular" class="w-8 h-8 mx-auto mb-2 opacity-50"/>
+        <p class="text-sm">暂无播放记录</p>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 20px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+}
+</style>

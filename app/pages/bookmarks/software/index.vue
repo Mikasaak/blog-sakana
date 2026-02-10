@@ -62,15 +62,14 @@ const toggleCategory = (category: string) => {
 </script>
 
 <template>
-  <div class="py-12">
-    <SectionTitle
-      title="精选软件"
-      subtitle="强力推荐的实用软件"
-      icon="heroicons:cpu-chip"
-    />
-
-    <!-- Search Bar -->
-    <div class="mt-8 flex items-center justify-end">
+  <div>
+    <!-- Header Area with Search -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">精选软件</h2>
+        <p class="text-gray-500 dark:text-gray-400 text-sm">强力推荐的实用软件</p>
+      </div>
+      
       <div class="relative w-full md:w-64">
         <Icon name="heroicons:magnifying-glass" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
         <input
@@ -82,7 +81,7 @@ const toggleCategory = (category: string) => {
       </div>
     </div>
 
-    <div v-if="Object.keys(groupedItems).length > 0" class="mt-8 space-y-8">
+    <div v-if="Object.keys(groupedItems).length > 0" class="space-y-8">
       <div 
         v-for="(groupItems, category) in groupedItems" 
         :key="category" 

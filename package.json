@@ -16,6 +16,7 @@
     "@nuxt/image": "2.0.0",
     "better-sqlite3": "^12.6.2",
     "eslint": "^9.0.0",
+    "NeteaseCloudMusicApi": "^4.28.1",
     "nuxt": "^4.3.0"
   },
   "devDependencies": {
