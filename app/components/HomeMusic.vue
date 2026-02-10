@@ -2,10 +2,12 @@
 const limit = ref(7)
 const containerRef = ref<HTMLElement | null>(null)
 
-const {data: songs, status} = await useFetch('/api/music/playlist', {
-  query: {
+const { data: songs, status } = await useFetch('/api/music/playlist', {
+  query: { 
     limit: limit,
-    id: '17747589549'
+    mode: 'record',
+    uid: '318343018', // 您的网易云 UID
+    type: '1' // 1: 最近一周, 0: 所有时间
   },
   server: true,
   lazy: true,
@@ -27,11 +29,10 @@ const handleScroll = () => {
 </script>
 
 <template>
-  <div
-      class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 h-full flex flex-col">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 h-full flex flex-col">
     <div class="flex items-center justify-between mb-6 flex-shrink-0">
       <h3 class="text-xl font-bold flex items-center gap-2">
-        <Icon name="fluent:headphones-sound-wave-24-filled" class="text-primary-500"/>
+        <Icon name="fluent:headphones-sound-wave-24-filled" class="text-primary-500" />
         最近在听
       </h3>
       <span class="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-gray-500">
@@ -39,10 +40,11 @@ const handleScroll = () => {
       </span>
     </div>
 
-    <div
-        ref="containerRef"
-        @scroll="handleScroll"
-        class="flex-1 overflow-y-auto custom-scrollbar pr-2 -mr-2 h-[350px]"
+    <!-- Ensure container is always rendered with explicit height -->
+    <div 
+      ref="containerRef"
+      @scroll="handleScroll"
+      class="flex-1 overflow-y-auto custom-scrollbar pr-2 -mr-2 h-[350px] min-h-[350px]"
     >
       <div v-if="status === 'pending' && (!songs || songs.length === 0)" class="space-y-4">
         <div v-for="i in 4" :key="i" class="flex items-center gap-4 animate-pulse">
@@ -57,36 +59,34 @@ const handleScroll = () => {
       <div v-else-if="songs && songs.length > 0" class="space-y-4 pb-4">
         <div v-for="(song, index) in songs" :key="index" class="flex items-center gap-4 group">
           <div class="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-            <img :src="song.cover" :alt="song.title" class="w-full h-full object-cover"/>
-            <div
-                class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-              <Icon name="fluent:play-24-filled" class="text-white w-6 h-6"/>
+            <img :src="song.cover" :alt="song.title" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+              <Icon name="fluent:play-24-filled" class="text-white w-6 h-6" />
             </div>
           </div>
-
+          
           <div class="flex-grow min-w-0">
-            <h4 class="font-medium text-gray-900 dark:text-gray-100 truncate group-hover:text-primary-600 transition-colors cursor-pointer"
-                :title="song.title">
+            <h4 class="font-medium text-gray-900 dark:text-gray-100 truncate group-hover:text-primary-600 transition-colors cursor-pointer" :title="song.title">
               {{ song.title }}
             </h4>
             <p class="text-xs text-gray-500 dark:text-gray-400 truncate" :title="song.artist">
               {{ song.artist }}
             </p>
           </div>
-
+          
           <div class="text-xs text-gray-400 font-mono">
             {{ song.played }}
           </div>
         </div>
-
+        
         <!-- Loading More Indicator -->
         <div v-if="status === 'pending'" class="py-4 flex justify-center">
-          <Icon name="svg-spinners:3-dots-fade" class="w-6 h-6 text-gray-400"/>
+          <Icon name="svg-spinners:3-dots-fade" class="w-6 h-6 text-gray-400" />
         </div>
       </div>
 
       <div v-else class="text-center py-8 text-gray-500">
-        <Icon name="fluent:music-note-off-24-regular" class="w-8 h-8 mx-auto mb-2 opacity-50"/>
+        <Icon name="fluent:music-note-off-24-regular" class="w-8 h-8 mx-auto mb-2 opacity-50" />
         <p class="text-sm">暂无播放记录</p>
       </div>
     </div>
