@@ -29,5 +29,16 @@ export default defineContentConfig({
         tags: z.array(z.string()).optional(),
       }),
     }),
+    notes: defineCollection({
+      type: 'data',
+      source: 'notes/data.json', // Specify the exact file
+      schema: z.object({
+        content: z.string(),
+        author: z.string().optional(),
+        source: z.string().optional(),
+        date: z.string(),
+        color: z.enum(['red', 'blue', 'green', 'purple', 'orange', 'pink']).optional(),
+      }),
+    }),
   },
 })
