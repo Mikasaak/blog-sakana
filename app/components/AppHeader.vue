@@ -11,7 +11,16 @@ const links = [
     ]
   },
   { name: '瞬间', path: '/moments', icon: 'heroicons:photo' },
-  { name: '项目', path: '/projects', icon: 'heroicons:star' },
+  { 
+    name: '精选', 
+    path: '/bookmarks', 
+    icon: 'heroicons:star',
+    children: [
+      { name: '网站', path: '/bookmarks/websites' },
+      { name: '软件', path: '/bookmarks/software' }
+    ]
+  },
+  { name: '项目', path: '/projects', icon: 'heroicons:briefcase' },
   { name: '关于', path: '/about', icon: 'mdi:pac-man' },
 ]
 

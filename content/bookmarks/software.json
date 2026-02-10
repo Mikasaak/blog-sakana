@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Hingle 主题",
+    "description": "Typecho 主题 Single 的 Hexo 移植版本，还在起初阶段，缺少一些实际功能",
+    "url": "#",
+    "icon": "heroicons:swatch",
+    "color": "bg-orange-400"
+  },
+  {
+    "title": "Kico Player",
+    "description": "一个轻量级的 HTML5 音乐播放器",
+    "url": "#",
+    "icon": "heroicons:musical-note",
+    "color": "bg-purple-400"
+  }
+]

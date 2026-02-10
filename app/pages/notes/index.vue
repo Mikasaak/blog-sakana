@@ -27,6 +27,16 @@ const colorMap: Record<string, string> = {
 const getColorClass = (color?: string) => {
   return colorMap[color || 'blue'] || colorMap['blue']
 }
+
+// Pagination
+const currentPage = ref(1)
+const pageSize = 12
+
+const paginatedNotes = computed(() => {
+  const start = (currentPage.value - 1) * pageSize
+  const end = start + pageSize
+  return (notes.value || []).slice(start, end)
+})
 </script>
 
 <template>
@@ -42,7 +52,7 @@ const getColorClass = (color?: string) => {
 
     <div class="columns-1 md:columns-2 gap-6 mt-8 space-y-6">
       <div
-          v-for="(note, index) in notes"
+          v-for="(note, index) in paginatedNotes"
           :key="index"
           class="break-inside-avoid bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border-l-4"
           :class="getColorClass(note.color)"
@@ -61,5 +71,11 @@ const getColorClass = (color?: string) => {
         </div>
       </div>
     </div>
+
+    <AppPagination
+      v-model:current-page="currentPage"
+      :total-items="notes?.length || 0"
+      :page-size="pageSize"
+    />
   </div>
 </template>
