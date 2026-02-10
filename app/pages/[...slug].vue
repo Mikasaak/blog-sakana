@@ -11,8 +11,10 @@ if (!page.value) {
 </script>
 
 <template>
-  <ContentRenderer
-    v-if="page"
-    :value="page"
-  />
+  <article class="prose lg:prose-xl dark:prose-invert max-w-4xl mx-auto">
+    <ContentRenderer
+      v-if="page"
+      :value="page"
+    />
+  </article>
 </template>

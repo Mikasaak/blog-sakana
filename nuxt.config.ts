@@ -6,6 +6,10 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/eslint',
     '@nuxt/fonts',
+    '@nuxtjs/tailwindcss',
+  ],
+  css: [
+    '~/assets/css/main.css',
   ],
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03',

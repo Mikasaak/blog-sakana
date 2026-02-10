@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 主色调 - 调整为更接近 Paul 的天蓝色 */
+    --color-primary-50: #f0f9ff;
+    --color-primary-100: #e0f2fe;
+    --color-primary-200: #bae6fd;
+    --color-primary-300: #7dd3fc;
+    --color-primary-400: #38bdf8;
+    --color-primary-500: #0ea5e9; /* Sky-500 */
+    --color-primary-600: #0284c7;
+    --color-primary-700: #0369a1;
+    --color-primary-800: #075985;
+    --color-primary-900: #0c4a6e;
+    --color-primary-950: #082f49;
+
+    /* 背景色 - 蓝色调 */
+    --bg-body: #e0f2fe; /* Sky-100 */
+    --bg-card: #ffffff;
+    --bg-header: rgba(224, 242, 254, 0.9); /* Sky-100 with opacity */
+    --bg-footer: #bae6fd; /* Sky-200 - 更深的底部蓝色 */
+    
+    /* 文字色 */
+    --text-main: #0f172a; /* Slate-900 */
+    --text-secondary: #475569; /* Slate-600 */
+    
+    /* 边框色 */
+    --border-color: #e2e8f0;
+  }
+
+  .dark {
+    /* 深色模式变量重写 */
+    --color-primary-500: #38bdf8; /* Sky-400 */
+    
+    --bg-body: #0f172a; /* Slate-900 */
+    --bg-card: #1e293b; /* Slate-800 */
+    --bg-header: rgba(15, 23, 42, 0.9);
+    --bg-footer: #020617; /* Slate-950 */
+
+    --text-main: #f1f5f9;
+    --text-secondary: #94a3b8;
+    
+    --border-color: #334155;
+  }
+
+  body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer components {
+  .paul-avatar {
+    @apply w-24 h-24 sm:w-32 sm:h-32 rounded-full border-4 border-white dark:border-gray-800 shadow-lg transition-transform duration-500 hover:rotate-[360deg] hover:scale-110 cursor-pointer object-cover;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+}
