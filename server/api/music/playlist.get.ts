@@ -36,7 +36,12 @@ export default defineEventHandler(async (event) => {
 
       // Record data structure is different: { weekData: [{ playCount, score, song: {...} }] }
       const recordData = (type === '1' ? res.body.weekData : res.body.allData) as any[] || []
-      songs = recordData.map(item => item.song)
+      // We map it to include the actual play count from the wrapper
+      songs = recordData.map(item => ({
+        ...item.song,
+        _playCount: item.playCount, // Inject real play count
+        _score: item.score
+      }))
 
     } else {
       // Default: Playlist mode
@@ -60,10 +65,8 @@ export default defineEventHandler(async (event) => {
       artist: song.ar?.map((a: any) => a.name).join(' / ') || 'Unknown',
       album: song.al?.name || '',
       cover: song.al?.picUrl || '',
-      // If in record mode, we don't have play count in the song object directly usually, 
-      // but in the record response wrapper. However, here we simplified mapping.
-      // Let's keep the mock or try to get score if possible, but for consistency:
-      played: `${Math.floor(Math.random() * 500) + 100}次`
+      // Use real play count if available (from record mode), otherwise mock
+      played: song._playCount ? `${song._playCount}次` : `${Math.floor(Math.random() * 500) + 100}次`
     }))
 
   } catch (error) {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const limit = ref(7)
+const limit = ref(8)
+const type = ref('1') // '1': Week, '0': All Time
 const containerRef = ref<HTMLElement | null>(null)
 
 const { data: songs, status } = await useFetch('/api/music/playlist', {
@@ -7,44 +8,65 @@ const { data: songs, status } = await useFetch('/api/music/playlist', {
     limit: limit,
     mode: 'record',
     uid: '318343018', // 您的网易云 UID
-    type: '1' // 1: 最近一周, 0: 所有时间
+    type: type
   },
   server: true,
   lazy: true,
-  watch: [limit]
+  watch: [limit, type]
+})
+
+// Reset limit when type changes
+watch(type, () => {
+  limit.value = 7
+  if (containerRef.value) {
+    containerRef.value.scrollTop = 0
+  }
 })
 
 // Infinite scroll handler
 const handleScroll = () => {
-  console.log("🚀 ~  ~ handleScroll: ");
   if (!containerRef.value) return
-
-  const {scrollTop, scrollHeight, clientHeight} = containerRef.value
+  
+  const { scrollTop, scrollHeight, clientHeight } = containerRef.value
   // Load more when scrolled to bottom (with 50px threshold)
   if (scrollTop + clientHeight >= scrollHeight - 50 && status.value !== 'pending') {
     limit.value += 6
   }
 }
-
 </script>
 
 <template>
-  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 h-full flex flex-col">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 flex flex-col h-[600px]">
     <div class="flex items-center justify-between mb-6 flex-shrink-0">
       <h3 class="text-xl font-bold flex items-center gap-2">
         <Icon name="fluent:headphones-sound-wave-24-filled" class="text-primary-500" />
         最近在听
       </h3>
-      <span class="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-gray-500">
-        Top Weekly
-      </span>
+      
+      <!-- Time Range Switcher -->
+      <div class="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+        <button 
+          @click="type = '1'"
+          class="px-3 py-1 text-xs font-medium rounded-md transition-all duration-300"
+          :class="type === '1' ? 'bg-white dark:bg-gray-600 text-primary-500 shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'"
+        >
+          Top Weekly
+        </button>
+        <button 
+          @click="type = '0'"
+          class="px-3 py-1 text-xs font-medium rounded-md transition-all duration-300"
+          :class="type === '0' ? 'bg-white dark:bg-gray-600 text-primary-500 shadow-sm' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'"
+        >
+          All Time
+        </button>
+      </div>
     </div>
 
-    <!-- Ensure container is always rendered with explicit height -->
+    <!-- Scrollable container -->
     <div 
       ref="containerRef"
       @scroll="handleScroll"
-      class="flex-1 overflow-y-auto custom-scrollbar pr-2 -mr-2 h-[350px] min-h-[350px]"
+      class="flex-1 overflow-y-auto custom-scrollbar pr-2 -mr-2"
     >
       <div v-if="status === 'pending' && (!songs || songs.length === 0)" class="space-y-4">
         <div v-for="i in 4" :key="i" class="flex items-center gap-4 animate-pulse">
