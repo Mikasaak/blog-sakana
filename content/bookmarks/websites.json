@@ -1,154 +1,165 @@
 [
   {
-    "title": "Vue.js",
-    "description": "渐进式 JavaScript 框架，易学易用，性能出色，适用场景丰富的 Web 前端框架",
-    "url": "https://vuejs.org",
-    "icon": "logos:vue",
-    "color": "bg-green-500",
-    "category": "前端开发"
+    "category": "前端开发",
+    "items": [
+      {
+        "title": "Vue.js",
+        "description": "渐进式 JavaScript 框架，易学易用，性能出色，适用场景丰富的 Web 前端框架",
+        "url": "https://vuejs.org",
+        "icon": "logos:vue",
+        "color": "bg-green-500"
+      },
+      {
+        "title": "Nuxt.js",
+        "description": "直观的 Vue 框架，构建高性能和生产级别的全栈 Web 应用",
+        "url": "https://nuxt.com",
+        "icon": "logos:nuxt-icon",
+        "color": "bg-green-600"
+      },
+      {
+        "title": "React",
+        "description": "用于构建用户界面的 JavaScript 库",
+        "url": "https://react.dev",
+        "icon": "logos:react",
+        "color": "bg-blue-400"
+      },
+      {
+        "title": "Tailwind CSS",
+        "description": "一个功能类优先的 CSS 框架，无需离开 HTML 即可快速构建现代网站",
+        "url": "https://tailwindcss.com",
+        "icon": "logos:tailwindcss-icon",
+        "color": "bg-sky-400"
+      },
+      {
+        "title": "Vite",
+        "description": "下一代前端开发与构建工具",
+        "url": "https://vitejs.dev",
+        "icon": "logos:vitejs",
+        "color": "bg-purple-500"
+      },
+      {
+        "title": "MDN Web Docs",
+        "description": "源于开发者的 Web 文档，涵盖 HTML, CSS, JavaScript 等",
+        "url": "https://developer.mozilla.org",
+        "icon": "logos:mdn",
+        "color": "bg-black"
+      }
+    ]
   },
   {
-    "title": "Nuxt.js",
-    "description": "直观的 Vue 框架，构建高性能和生产级别的全栈 Web 应用",
-    "url": "https://nuxt.com",
-    "icon": "logos:nuxt-icon",
-    "color": "bg-green-600",
-    "category": "前端开发"
+    "category": "后端开发",
+    "items": [
+      {
+        "title": "Code Snippets",
+        "description": "各种实践，用来折腾和测试编写的代码片段",
+        "url": "https://github.com",
+        "icon": "heroicons:code-bracket",
+        "color": "bg-red-400"
+      },
+      {
+        "title": "保罗 API 新版",
+        "description": "使用 MidwayJS + React 重写的保罗 API",
+        "url": "#",
+        "icon": "heroicons:server",
+        "color": "bg-teal-400"
+      }
+    ]
   },
   {
-    "title": "React",
-    "description": "用于构建用户界面的 JavaScript 库",
-    "url": "https://react.dev",
-    "icon": "logos:react",
-    "color": "bg-blue-400",
-    "category": "前端开发"
+    "category": "AI 工具",
+    "items": [
+      {
+        "title": "ChatGPT",
+        "description": "OpenAI 开发的人工智能聊天机器人程序，基于 GPT-4 架构",
+        "url": "https://chat.openai.com",
+        "icon": "simple-icons:openai",
+        "color": "bg-teal-600"
+      },
+      {
+        "title": "Claude",
+        "description": "Anthropic 开发的 AI 助手，擅长长文本处理和逻辑推理",
+        "url": "https://claude.ai",
+        "icon": "fluent-emoji:brain",
+        "color": "bg-orange-400"
+      },
+      {
+        "title": "Trae IDE",
+        "description": "下一代智能编程工具，内置强大的 AI 助手，提升开发效率",
+        "url": "https://www.trae.ai",
+        "icon": "heroicons:sparkles",
+        "color": "bg-indigo-500"
+      },
+      {
+        "title": "Midjourney",
+        "description": "强大的 AI 绘画工具，可以生成高质量的图像",
+        "url": "https://www.midjourney.com",
+        "icon": "fluent-emoji:artist-palette",
+        "color": "bg-blue-600"
+      },
+      {
+        "title": "v0.dev",
+        "description": "Vercel 推出的生成式 UI 系统，用自然语言生成 React 组件",
+        "url": "https://v0.dev",
+        "icon": "simple-icons:vercel",
+        "color": "bg-black"
+      }
+    ]
   },
   {
-    "title": "Tailwind CSS",
-    "description": "一个功能类优先的 CSS 框架，无需离开 HTML 即可快速构建现代网站",
-    "url": "https://tailwindcss.com",
-    "icon": "logos:tailwindcss-icon",
-    "color": "bg-sky-400",
-    "category": "前端开发"
+    "category": "ACG 资源",
+    "items": [
+      {
+        "title": "哔哩哔哩",
+        "description": "国内知名的视频弹幕网站，这里有及时的动漫新番，活跃的ACG氛围",
+        "url": "https://www.bilibili.com",
+        "icon": "simple-icons:bilibili",
+        "color": "bg-pink-400"
+      },
+      {
+        "title": "Pixiv",
+        "description": "著名的插画交流网站，汇聚了全球各地的画师",
+        "url": "https://www.pixiv.net",
+        "icon": "simple-icons:pixiv",
+        "color": "bg-blue-500"
+      },
+      {
+        "title": "Bangumi",
+        "description": "专注于动漫、音乐、游戏领域的 ACG 社区，用于记录和分享",
+        "url": "https://bgm.tv",
+        "icon": "fluent-emoji:cherry-blossom",
+        "color": "bg-pink-300"
+      },
+      {
+        "title": "萌娘百科",
+        "description": "万物皆可萌的百科全书",
+        "url": "https://zh.moegirl.org.cn",
+        "icon": "fluent-emoji:green-book",
+        "color": "bg-green-400"
+      }
+    ]
   },
   {
-    "title": "Vite",
-    "description": "下一代前端开发与构建工具",
-    "url": "https://vitejs.dev",
-    "icon": "logos:vitejs",
-    "color": "bg-purple-500",
-    "category": "前端开发"
+    "category": "在线工具",
+    "items": [
+      {
+        "title": "Felo 会议",
+        "description": "一个面向海外市场的在线会议平台，主要特色功能包括文档协作、妙计总结与实时字幕",
+        "url": "https://felo.me",
+        "icon": "heroicons:video-camera",
+        "color": "bg-blue-400"
+      }
+    ]
   },
   {
-    "title": "MDN Web Docs",
-    "description": "源于开发者的 Web 文档，涵盖 HTML, CSS, JavaScript 等",
-    "url": "https://developer.mozilla.org",
-    "icon": "logos:mdn",
-    "color": "bg-black",
-    "category": "前端开发"
-  },
-  {
-    "title": "ChatGPT",
-    "description": "OpenAI 开发的人工智能聊天机器人程序，基于 GPT-4 架构",
-    "url": "https://chat.openai.com",
-    "icon": "simple-icons:openai",
-    "color": "bg-teal-600",
-    "category": "AI 工具"
-  },
-  {
-    "title": "Claude",
-    "description": "Anthropic 开发的 AI 助手，擅长长文本处理和逻辑推理",
-    "url": "https://claude.ai",
-    "icon": "fluent-emoji:brain",
-    "color": "bg-orange-400",
-    "category": "AI 工具"
-  },
-  {
-    "title": "Trae IDE",
-    "description": "下一代智能编程工具，内置强大的 AI 助手，提升开发效率",
-    "url": "https://www.trae.ai",
-    "icon": "heroicons:sparkles",
-    "color": "bg-indigo-500",
-    "category": "AI 工具"
-  },
-  {
-    "title": "Midjourney",
-    "description": "强大的 AI 绘画工具，可以生成高质量的图像",
-    "url": "https://www.midjourney.com",
-    "icon": "fluent-emoji:artist-palette",
-    "color": "bg-blue-600",
-    "category": "AI 工具"
-  },
-  {
-    "title": "v0.dev",
-    "description": "Vercel 推出的生成式 UI 系统，用自然语言生成 React 组件",
-    "url": "https://v0.dev",
-    "icon": "simple-icons:vercel",
-    "color": "bg-black",
-    "category": "AI 工具"
-  },
-  {
-    "title": "哔哩哔哩",
-    "description": "国内知名的视频弹幕网站，这里有及时的动漫新番，活跃的ACG氛围",
-    "url": "https://www.bilibili.com",
-    "icon": "simple-icons:bilibili",
-    "color": "bg-pink-400",
-    "category": "ACG 资源"
-  },
-  {
-    "title": "Pixiv",
-    "description": "著名的插画交流网站，汇聚了全球各地的画师",
-    "url": "https://www.pixiv.net",
-    "icon": "simple-icons:pixiv",
-    "color": "bg-blue-500",
-    "category": "ACG 资源"
-  },
-  {
-    "title": "Bangumi",
-    "description": "专注于动漫、音乐、游戏领域的 ACG 社区，用于记录和分享",
-    "url": "https://bgm.tv",
-    "icon": "fluent-emoji:cherry-blossom",
-    "color": "bg-pink-300",
-    "category": "ACG 资源"
-  },
-  {
-    "title": "萌娘百科",
-    "description": "万物皆可萌的百科全书",
-    "url": "https://zh.moegirl.org.cn",
-    "icon": "fluent-emoji:green-book",
-    "color": "bg-green-400",
-    "category": "ACG 资源"
-  },
-  {
-    "title": "Felo 会议",
-    "description": "一个面向海外市场的在线会议平台，主要特色功能包括文档协作、妙计总结与实时字幕",
-    "url": "https://felo.me",
-    "icon": "heroicons:video-camera",
-    "color": "bg-blue-400",
-    "category": "在线工具"
-  },
-  {
-    "title": "Iconify",
-    "description": "开源矢量图标库，提供超过 100 个图标集",
-    "url": "https://iconify.design",
-    "icon": "simple-icons:iconify",
-    "color": "bg-purple-500",
-    "category": "设计资源"
-  },
-  {
-    "title": "Code Snippets",
-    "description": "各种实践，用来折腾和测试编写的代码片段",
-    "url": "https://github.com",
-    "icon": "heroicons:code-bracket",
-    "color": "bg-red-400",
-    "category": "后端开发"
-  },
-  {
-    "title": "保罗 API 新版",
-    "description": "使用 MidwayJS + React 重写的保罗 API",
-    "url": "#",
-    "icon": "heroicons:server",
-    "color": "bg-teal-400",
-    "category": "后端开发"
+    "category": "设计资源",
+    "items": [
+      {
+        "title": "Iconify",
+        "description": "开源矢量图标库，提供超过 100 个图标集",
+        "url": "https://iconify.design",
+        "icon": "simple-icons:iconify",
+        "color": "bg-purple-500"
+      }
+    ]
   }
 ]

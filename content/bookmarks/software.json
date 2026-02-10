@@ -1,16 +1,118 @@
 [
   {
-    "title": "Hingle 主题",
-    "description": "Typecho 主题 Single 的 Hexo 移植版本，还在起初阶段，缺少一些实际功能",
-    "url": "#",
-    "icon": "heroicons:swatch",
-    "color": "bg-orange-400"
+    "category": "开发工具",
+    "items": [
+      {
+        "title": "VS Code",
+        "description": "微软开发的免费开源代码编辑器，支持几乎所有主流编程语言",
+        "url": "https://code.visualstudio.com",
+        "icon": "logos:visual-studio-code",
+        "color": "bg-blue-500"
+      },
+      {
+        "title": "WebStorm",
+        "description": "JetBrains 推出的强大的 JavaScript 开发 IDE",
+        "url": "https://www.jetbrains.com/webstorm",
+        "icon": "logos:webstorm",
+        "color": "bg-blue-400"
+      },
+      {
+        "title": "Trae",
+        "description": "下一代智能编程工具，内置强大的 AI 助手，提升开发效率",
+        "url": "https://www.trae.ai",
+        "icon": "heroicons:sparkles",
+        "color": "bg-indigo-500"
+      },
+      {
+        "title": "Docker",
+        "description": "开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中",
+        "url": "https://www.docker.com",
+        "icon": "logos:docker-icon",
+        "color": "bg-blue-600"
+      },
+      {
+        "title": "Postman",
+        "description": "用于 API 开发的协作平台，可以轻松构建、测试和修改 API",
+        "url": "https://www.postman.com",
+        "icon": "logos:postman-icon",
+        "color": "bg-orange-500"
+      }
+    ]
   },
   {
-    "title": "Kico Player",
-    "description": "一个轻量级的 HTML5 音乐播放器",
-    "url": "#",
-    "icon": "heroicons:musical-note",
-    "color": "bg-purple-400"
+    "category": "设计工具",
+    "items": [
+      {
+        "title": "Figma",
+        "description": "基于浏览器的协作界面设计工具",
+        "url": "https://www.figma.com",
+        "icon": "logos:figma",
+        "color": "bg-purple-500"
+      },
+      {
+        "title": "Adobe Photoshop",
+        "description": "图像处理和编辑软件的标准",
+        "url": "https://www.adobe.com/products/photoshop.html",
+        "icon": "logos:adobe-photoshop",
+        "color": "bg-blue-800"
+      },
+      {
+        "title": "Blender",
+        "description": "开源的 3D 创作套件，支持建模、动画、渲染等",
+        "url": "https://www.blender.org",
+        "icon": "logos:blender",
+        "color": "bg-orange-400"
+      }
+    ]
+  },
+  {
+    "category": "常用软件",
+    "items": [
+      {
+        "title": "Chrome",
+        "description": "Google 开发的快速、安全的网页浏览器",
+        "url": "https://www.google.com/chrome",
+        "icon": "logos:chrome",
+        "color": "bg-yellow-400"
+      }
+    ]
+  },
+  {
+    "category": "效率工具",
+    "items": [
+      {
+        "title": "Notion",
+        "description": "集笔记、任务、数据库于一体的协作工作区",
+        "url": "https://www.notion.so",
+        "icon": "logos:notion-icon",
+        "color": "bg-gray-800"
+      },
+      {
+        "title": "Obsidian",
+        "description": "基于 Markdown 的本地知识管理软件",
+        "url": "https://obsidian.md",
+        "icon": "fluent-emoji:purple-heart",
+        "color": "bg-purple-600"
+      }
+    ]
+  },
+  {
+    "category": "我的作品",
+    "items": [
+      {
+        "title": "Hingle 主题",
+        "description": "Typecho 主题 Single 的 Hexo 移植版本，还在起初阶段，缺少一些实际功能",
+        "url": "#",
+        "icon": "heroicons:swatch",
+        "color": "bg-orange-400"
+      },
+      {
+        "title": "Kico Player",
+        "description": "一个轻量级的 HTML5 音乐播放器",
+        "url": "#",
+        "icon": "heroicons:musical-note",
+        "color": "bg-purple-400"
+      }
+    ]
   }
 ]

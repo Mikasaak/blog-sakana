@@ -44,23 +44,28 @@ export default defineContentConfig({
       type: 'data',
       source: 'bookmarks/websites.json',
       schema: z.object({
-        title: z.string(),
-        description: z.string(),
-        url: z.string(),
-        icon: z.string().optional(),
-        color: z.string().optional(),
-        category: z.string().optional(),
+        category: z.string(),
+        items: z.array(z.object({
+          title: z.string(),
+          description: z.string(),
+          url: z.string(),
+          icon: z.string().optional(),
+          color: z.string().optional(),
+        }))
       }),
     }),
     software: defineCollection({
       type: 'data',
       source: 'bookmarks/software.json',
       schema: z.object({
-        title: z.string(),
-        description: z.string(),
-        url: z.string(),
-        icon: z.string().optional(),
-        color: z.string().optional(),
+        category: z.string(),
+        items: z.array(z.object({
+          title: z.string(),
+          description: z.string(),
+          url: z.string(),
+          icon: z.string().optional(),
+          color: z.string().optional(),
+        }))
       }),
     }),
   },
