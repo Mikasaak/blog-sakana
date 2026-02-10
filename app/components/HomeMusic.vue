@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const limit = ref(8)
 const type = ref('1') // '1': Week, '0': All Time
-const containerRef = ref<HTMLElement | null>(null)
+const loadTrigger = ref<HTMLElement | null>(null)
 
 const { data: songs, status } = await useFetch('/api/music/playlist', {
   query: { 
@@ -17,22 +17,34 @@ const { data: songs, status } = await useFetch('/api/music/playlist', {
 
 // Reset limit when type changes
 watch(type, () => {
-  limit.value = 7
-  if (containerRef.value) {
-    containerRef.value.scrollTop = 0
+  limit.value = 8
+})
+
+// Use IntersectionObserver for infinite scroll
+let observer: IntersectionObserver | null = null
+
+onMounted(() => {
+  observer = new IntersectionObserver((entries) => {
+    const entry = entries[0]
+    if (entry.isIntersecting && status.value !== 'pending') {
+      limit.value += 6
+    }
+  }, {
+    root: null, // viewport or parent container if needed
+    rootMargin: '100px', // trigger before reaching bottom
+    threshold: 0.1
+  })
+
+  if (loadTrigger.value) {
+    observer.observe(loadTrigger.value)
   }
 })
 
-// Infinite scroll handler
-const handleScroll = () => {
-  if (!containerRef.value) return
-  
-  const { scrollTop, scrollHeight, clientHeight } = containerRef.value
-  // Load more when scrolled to bottom (with 50px threshold)
-  if (scrollTop + clientHeight >= scrollHeight - 50 && status.value !== 'pending') {
-    limit.value += 6
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
   }
-}
+})
 </script>
 
 <template>
@@ -63,11 +75,7 @@ const handleScroll = () => {
     </div>
 
     <!-- Scrollable container -->
-    <div 
-      ref="containerRef"
-      @scroll="handleScroll"
-      class="flex-1 overflow-y-auto custom-scrollbar pr-2 -mr-2"
-    >
+    <div class="flex-1 overflow-y-auto custom-scrollbar pr-2 -mr-2">
       <div v-if="status === 'pending' && (!songs || songs.length === 0)" class="space-y-4">
         <div v-for="i in 4" :key="i" class="flex items-center gap-4 animate-pulse">
           <div class="w-12 h-12 bg-gray-200 dark:bg-gray-700 rounded-lg"></div>
@@ -101,9 +109,9 @@ const handleScroll = () => {
           </div>
         </div>
         
-        <!-- Loading More Indicator -->
-        <div v-if="status === 'pending'" class="py-4 flex justify-center">
-          <Icon name="svg-spinners:3-dots-fade" class="w-6 h-6 text-gray-400" />
+        <!-- Loading More Indicator & Sentinel -->
+        <div ref="loadTrigger" class="py-4 flex justify-center h-10 w-full">
+          <Icon v-if="status === 'pending'" name="svg-spinners:3-dots-fade" class="w-6 h-6 text-gray-400" />
         </div>
       </div>
 
