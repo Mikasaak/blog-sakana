@@ -2,6 +2,9 @@
   "name": "blog-sakana",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -9,6 +12,14 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
+    "@iconify-json/fluent": "^1.2.46",
+    "@iconify-json/fluent-emoji": "^1.2.7",
+    "@iconify-json/heroicons": "^1.2.3",
+    "@iconify-json/logos": "^1.2.11",
+    "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/simple-icons": "^1.2.80",
+    "@iconify-json/svg-spinners": "^1.2.4",
+    "@iconify-json/uil": "^1.2.3",
     "@nuxt/content": "^3.11.0",
     "@nuxt/eslint": "1.13.0",
     "@nuxt/fonts": "0.13.0",

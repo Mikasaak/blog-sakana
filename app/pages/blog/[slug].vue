@@ -1,7 +1,12 @@
 <script setup lang="ts">
 const route = useRoute()
+const slug = Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug
 const { data: post } = await useAsyncData('post-' + route.path, () => {
-  return queryCollection('blog').path(route.path).first()
+  return queryCollection('blog')
+    .all()
+    .then(items => items.find(item =>
+      item.path === route.path || item.stem === `blog/${slug}`,
+    ) || null)
 })
 
 if (!post.value) {

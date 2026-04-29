@@ -116,7 +116,7 @@ onUnmounted(() => {
       </div>
 
       <div v-else class="text-center py-8 text-gray-500">
-        <Icon name="fluent:music-note-off-24-regular" class="w-8 h-8 mx-auto mb-2 opacity-50" />
+        <Icon name="fluent:music-note-off-1-24-regular" class="w-8 h-8 mx-auto mb-2 opacity-50" />
         <p class="text-sm">暂无播放记录</p>
       </div>
     </div>
